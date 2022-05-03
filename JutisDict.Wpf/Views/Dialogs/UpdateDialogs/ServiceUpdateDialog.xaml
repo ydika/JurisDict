@@ -1,0 +1,37 @@
+﻿<Window x:Class="JurisDict.Wpf.Views.Dialogs.UpdateDialogs.ServiceUpdateDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JurisDict.Wpf.Views.Dialogs.UpdateDialogs" 
+        xmlns:viewmodels="clr-namespace:JurisDict.Wpf.ViewModels.UpdateDeleteViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:ServiceViewModel}"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="ServiceUpdateDialog" Height="450" Width="800">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Label Content="Наименование услуги:" Padding="1"/>
+            <Label Content="Описание услуги:" Padding="1"/>
+            <Label Content="Стоимость:" Padding="1"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBox Text="{Binding Model.ServiceName}"/>
+            <TextBox Text="{Binding Model.ServiceDescription}"/>
+            <TextBox Text="{Binding Model.Price, StringFormat=0.00}"/>
+        </StackPanel>
+        <WrapPanel Grid.Row="3">
+            <Button Content="Ok" Command="{Binding OkCommand}"/>
+            <Button Content="Cancel" Command="{Binding CancelCommand}"/>
+        </WrapPanel>
+    </Grid>
+</Window>

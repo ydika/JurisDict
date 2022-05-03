@@ -1,0 +1,43 @@
+﻿<Window x:Class="JurisDict.Wpf.Views.Dialogs.CreationDialogs.ClientCreationDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JurisDict.Wpf.Views.Dialogs.CreationDialogs" 
+        xmlns:viewmodels="clr-namespace:JurisDict.Wpf.ViewModels.CreateReadViewModels"
+        d:DataContext="{d:DesignInstance Type=viewmodels:ClientsViewModel}"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="ClientCreationDialog" Height="450" Width="800">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Label Content="ФИО:" Padding="1"/>
+            <Label Content="Моб. номер:" Padding="1"/>
+            <Label Content="Адрес:" Padding="1"/>
+            <Label Content="Д/Р:" Padding="1"/>
+            <Label Content="Паспортные данные:" Padding="1"/>
+            <Label Content="Пол:" Padding="1"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBox Text="{Binding Client.FullName}"/>
+            <TextBox Text="{Binding Client.MobileNumber}"/>
+            <TextBox Text="{Binding Client.Address}"/>
+            <TextBox Text="{Binding Client.DateOfBirth, StringFormat={}{0:dd.MM.yyyy}}"/>
+            <TextBox Text="{Binding Client.PassportData}"/>
+            <TextBox Text="{Binding Client.Gender}"/>
+        </StackPanel>
+        <WrapPanel Grid.Row="3">
+            <Button IsDefault="True" Content="Ok" Command="{Binding OkCommand}"/>
+            <Button IsCancel="True" Content="Cancel" Command="{Binding CancelCommand}"/>
+        </WrapPanel>
+    </Grid>
+</Window>

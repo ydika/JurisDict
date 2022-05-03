@@ -1,0 +1,67 @@
+﻿<Window x:Class="JurisDict.Wpf.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JurisDict.Wpf"
+        xmlns:ext="clr-namespace:JurisDict.Wpf.Extensions"
+        xmlns:mainvm="clr-namespace:JurisDict.Wpf.ViewModels"
+        xmlns:viewmodels="clr-namespace:JurisDict.Wpf.ViewModels.CreateReadViewModels"
+        xmlns:views="clr-namespace:JurisDict.Wpf.Views" 
+        d:DataContext="{d:DesignInstance Type=mainvm:MainViewModel}"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border Style="{StaticResource navigationPanel}">
+            <StackPanel>
+                <TextBlock Text="JurisDict"
+                           Style="{StaticResource logo}"/>
+                <TextBlock Text="ТАБЛИЦЫ" FontSize="14"/>
+                <Border Style="{StaticResource groupNavigationPanel}">
+                    <StackPanel>
+                        <ItemsControl ItemsSource="{Binding MenuButtons}"
+                                      Style="{StaticResource navigationButtonsItemsControl}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <StackPanel Grid.Column="1"
+                    Style="{StaticResource tableControlPanel}"
+                    Visibility="{Binding ControlButtonsVisibility, Converter={StaticResource boolToVisibility}}">
+            <ext:IconButton Icon="Delete" Command="{Binding DeleteViewModelCommand}"/>
+            <ext:IconButton Icon="Save" Command="{Binding UpdateViewModelCommand}"/>
+        </StackPanel>
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <ContentControl Content="{Binding CurrentViewModel, UpdateSourceTrigger=PropertyChanged}">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type viewmodels:ClientsViewModel}">
+                        <views:ClientsView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:ContractServicesViewModel}">
+                        <views:ContractServicesView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:ContractsViewModel}">
+                        <views:ContractsView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:DepartmentsViewModel}">
+                        <views:DepartmentsView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:EmployeesViewModel}">
+                        <views:EmployeesView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:PositionsViewModel}">
+                        <views:PositionsView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:ServicesViewModel}">
+                        <views:ServicesView/>
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+        </ScrollViewer>
+    </Grid>
+</Window>

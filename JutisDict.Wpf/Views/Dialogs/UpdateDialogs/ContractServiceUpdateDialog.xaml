@@ -1,0 +1,54 @@
+﻿<Window x:Class="JurisDict.Wpf.Views.Dialogs.UpdateDialogs.ContractServiceUpdateDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JurisDict.Wpf.Views.Dialogs.UpdateDialogs" 
+        xmlns:viewmodels="clr-namespace:JurisDict.Wpf.ViewModels.UpdateDeleteViewModels"
+        d:DataContext="{d:DesignInstance Type=viewmodels:ContractServiceViewModel}"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="ContractServiceUpdateDialog" Height="450" Width="800">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Label Content="№ Договора:" Padding="1"/>
+            <Label Content="Наименование услуги:" Padding="1"/>
+            <Label Content="Цена:" Padding="1"/>
+            <Label Content="ФИО сотрудника:" Padding="1"/>
+            <Label Content="День начала:" Padding="1"/>
+            <Label Content="День оконч.:" Padding="1"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <ComboBox ItemsSource="{Binding Contracts}"
+                      DisplayMemberPath="ContractNumber"
+                      SelectedValuePath="Id"
+                      SelectedValue="{Binding Path=Model.ContractId}"
+                      SelectedItem="{Binding Model.Contract}"/>
+            <ComboBox ItemsSource="{Binding Services}"
+                      DisplayMemberPath="ServiceName"
+                      SelectedValuePath="Id"
+                      SelectedValue="{Binding Path=Model.ServiceId}"
+                      SelectedItem="{Binding Model.Service}"/>
+            <ComboBox ItemsSource="{Binding Employees}"
+                      DisplayMemberPath="FullName"
+                      SelectedValuePath="Id"
+                      SelectedValue="{Binding Path=Model.EmployeeId}"
+                      SelectedItem="{Binding Model.Employee}"/>
+            <TextBox Text="{Binding Model.AppointmentDate, StringFormat={}{0:dd.MM.yyyy}}"/>
+            <TextBox Text="{Binding Model.PerformanceDate, StringFormat={}{0:dd.MM.yyyy}}"/>
+        </StackPanel>
+        <WrapPanel Grid.Row="3">
+            <Button Content="Ok" Command="{Binding OkCommand}"/>
+            <Button Content="Cancel" Command="{Binding CancelCommand}"/>
+        </WrapPanel>
+    </Grid>
+</Window>

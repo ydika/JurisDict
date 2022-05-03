@@ -1,0 +1,57 @@
+﻿<Window x:Class="JurisDict.Wpf.Views.Dialogs.CreationDialogs.EmployeeCreationDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JurisDict.Wpf.Views.Dialogs.CreationDialogs" 
+        xmlns:viewmodels="clr-namespace:JurisDict.Wpf.ViewModels.CreateReadViewModels"
+        d:DataContext="{d:DesignInstance Type=viewmodels:EmployeesViewModel}"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="EmployeeCreationDialog" Height="450" Width="800">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Label Content="Отдел:" Padding="1"/>
+            <Label Content="Должность:" Padding="1"/>
+            <Label Content="ФИО:" Padding="1"/>
+            <Label Content="Моб. номер:" Padding="1"/>
+            <Label Content="Адрес:" Padding="1"/>
+            <Label Content="День рождения:" Padding="1"/>
+            <Label Content="З/П:" Padding="1"/>
+            <Label Content="Паспортные данные:" Padding="1"/>
+            <Label Content="Опыт:" Padding="1"/>
+            <Label Content="Пол:" Padding="1"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <ComboBox ItemsSource="{Binding Departments}"
+                      DisplayMemberPath="DepartmentName"
+                      SelectedValuePath="Id"
+                      SelectedValue="{Binding Path=Employee.DepartmentId}"/>
+            <ComboBox ItemsSource="{Binding Positions}"
+                      DisplayMemberPath="PositionName"
+                      SelectedValuePath="Id"
+                      SelectedValue="{Binding Path=Employee.PositionId}"/>
+            <TextBox Text="{Binding Employee.FullName}"/>
+            <TextBox Text="{Binding Employee.MobileNumber}"/>
+            <TextBox Text="{Binding Employee.Address}"/>
+            <TextBox Text="{Binding Employee.DateOfBirth, StringFormat={}{0:dd.MM.yyyy}}"/>
+            <TextBox Text="{Binding Employee.Salary, StringFormat=0.00}"/>
+            <TextBox Text="{Binding Employee.PassportData}"/>
+            <TextBox Text="{Binding Employee.Experience}"/>
+            <TextBox Text="{Binding Employee.Gender}"/>
+        </StackPanel>
+        <WrapPanel Grid.Row="3">
+            <Button Content="Ok" Command="{Binding OkCommand}"/>
+            <Button Content="Cancel" Command="{Binding CancelCommand}"/>
+        </WrapPanel>
+    </Grid>
+</Window>
