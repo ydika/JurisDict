@@ -47,7 +47,7 @@ namespace JurisDict.Wpf.ViewModels
         private void OnNavigate(ObservableObject vm)
         {
             CurrentViewModel = vm;
-            if (CurrentViewModel is not null)
+            if (CurrentViewModel is not null && !ControlButtonsVisibility)
             {
                 ControlButtonsVisibility = true;
             }

@@ -7,7 +7,8 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Height" Value="32"/>
-        <Setter Property="Margin" Value="2"/>
+        <Setter Property="IconSize" Value="22"/>
+        <Setter Property="Padding" Value="3"/>
         <Setter Property="Width" Value="32"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -15,7 +16,8 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            Padding="3">
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Padding="{TemplateBinding Padding}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.25*"/>
@@ -36,8 +38,10 @@
                                     </ColumnDefinition.Style>
                                 </ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <ext:IconViewBox Icon="{TemplateBinding Icon}"
-                                             Width="{TemplateBinding Width}"/>
+                            <ext:IconViewBox Foreground="{TemplateBinding Foreground}"
+                                             Icon="{TemplateBinding Icon}"
+                                             Height="{TemplateBinding IconSize}"
+                                             Width="{TemplateBinding IconSize}"/>
                             <TextBlock Grid.Column="1"
                                        Text="{TemplateBinding Text}"
                                        HorizontalAlignment="Center"

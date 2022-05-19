@@ -18,10 +18,10 @@ namespace JurisDict.Wpf.ViewModels.UpdateDeleteViewModels
     {
         public Position Model { get; set; }
 
-        public bool IsChecked { get; set; }
+        public bool IsDelete { get; set; }
         public Guid Id => Model.Id;
 
-        public bool IsUpdated { get; set; } = false;
+        public bool IsUpdated { get; set; }
         public event EventHandler<DialogCloseRequestedEventArgs> CloseRequest;
         public ICommand PositionUpdateShowDialog { get; }
         public ICommand OkCommand { get; }

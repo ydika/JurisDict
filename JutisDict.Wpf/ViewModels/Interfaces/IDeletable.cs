@@ -8,7 +8,7 @@ namespace JurisDict.Wpf.ViewModels.Interfaces
 {
     public interface IDeletable
     {
-        bool IsChecked { get; set; }
+        bool IsDelete { get; set; }
         Guid Id { get; }
     }
 }

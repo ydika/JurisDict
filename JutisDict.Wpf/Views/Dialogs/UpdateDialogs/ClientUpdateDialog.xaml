@@ -8,36 +8,51 @@
         d:DataContext="{d:DesignInstance Type=viewmodels:ClientViewModel}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="ClientUpdateDialog" Height="450" Width="800">
-    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <StackPanel>
-            <Label Content="ФИО:" Padding="1"/>
-            <Label Content="Моб. номер:" Padding="1"/>
-            <Label Content="Адрес:" Padding="1"/>
-            <Label Content="Д/Р:" Padding="1"/>
-            <Label Content="Паспортные данные:" Padding="1"/>
-            <Label Content="Пол:" Padding="1"/>
-        </StackPanel>
-        <StackPanel Grid.Column="1">
-            <TextBox Text="{Binding Model.FullName}"/>
-            <TextBox Text="{Binding Model.MobileNumber}"/>
-            <TextBox Text="{Binding Model.Address}"/>
-            <TextBox Text="{Binding Model.DateOfBirth, StringFormat={}{0:dd.MM.yyyy}}"/>
-            <TextBox Text="{Binding Model.PassportData}"/>
-            <TextBox Text="{Binding Model.Gender}"/>
-        </StackPanel>
-        <WrapPanel Grid.Row="3">
-            <Button IsDefault="True" Content="Ok" Command="{Binding OkCommand}"/>
-            <Button IsCancel="True" Content="Cancel" Command="{Binding CancelCommand}"/>
-        </WrapPanel>
-    </Grid>
+        Title="ClientUpdateDialog">
+    <Window.Resources>
+        <ResourceDictionary Source="/Styles/DialogWindowStyle.xaml"/>
+    </Window.Resources>
+    <Window.Style>
+        <Style TargetType="Window" BasedOn="{StaticResource dialogWindow}"/>
+    </Window.Style>
+    <StackPanel>
+        <TextBlock Text="Редактирование Клиента"
+                   Style="{StaticResource dialogHeader}"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Style="{StaticResource labelsStackPanel}">
+                <Label Content="ФИО:"/>
+                <Label Content="Моб. номер:"/>
+                <Label Content="Адрес:"
+                       Height="{Binding ElementName=address, Path=ActualHeight}"/>
+                <Label Content="Д/Р:"/>
+                <Label Content="Паспортные данные:"/>
+                <Label Content="Пол:"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBox Text="{Binding Model.FullName}"/>
+                <TextBox Text="{Binding Model.MobileNumber}"/>
+                <TextBox x:Name="address" Text="{Binding Model.Address}"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"/>
+                <DatePicker SelectedDate="{Binding Model.DateOfBirth, StringFormat={}{0:dd/MM/yyyy}}"/>
+                <TextBox Text="{Binding Model.PassportData}"/>
+                <TextBox Text="{Binding Model.Gender}"/>
+            </StackPanel>
+            <WrapPanel Grid.ColumnSpan="2" Grid.Row="1"
+                       Style="{StaticResource dialogButtonsPanel}">
+                <Button Style="{StaticResource okButton}"
+                        Command="{Binding OkCommand}"/>
+                <Button Style="{StaticResource cancelButton}"
+                        Command="{Binding CancelCommand}"/>
+            </WrapPanel>
+        </Grid>
+    </StackPanel>
 </Window>

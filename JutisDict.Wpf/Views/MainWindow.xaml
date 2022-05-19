@@ -12,18 +12,24 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <ResourceDictionary Source="/Styles/MainWindowContentStyle.xaml"/>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="225"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Border Style="{StaticResource navigationPanel}">
             <StackPanel>
                 <TextBlock Text="JurisDict"
                            Style="{StaticResource logo}"/>
-                <TextBlock Text="ТАБЛИЦЫ" FontSize="14"/>
                 <Border Style="{StaticResource groupNavigationPanel}">
                     <StackPanel>
+                        <Border Style="{StaticResource groupNPHeaderBorder}">
+                            <TextBlock Text="Таблицы"
+                                       Style="{StaticResource groupNPHeader}"/>
+                        </Border>
                         <ItemsControl ItemsSource="{Binding MenuButtons}"
                                       Style="{StaticResource navigationButtonsItemsControl}"/>
                     </StackPanel>
@@ -33,8 +39,11 @@
         <StackPanel Grid.Column="1"
                     Style="{StaticResource tableControlPanel}"
                     Visibility="{Binding ControlButtonsVisibility, Converter={StaticResource boolToVisibility}}">
-            <ext:IconButton Icon="Delete" Command="{Binding DeleteViewModelCommand}"/>
-            <ext:IconButton Icon="Save" Command="{Binding UpdateViewModelCommand}"/>
+            <ext:IconButton CornerRadius="15"
+                            Icon="Delete" Margin="0 0 6 0"
+                            Command="{Binding DeleteViewModelCommand}"/>
+            <ext:IconButton CornerRadius="15" Icon="Save" 
+                            Command="{Binding UpdateViewModelCommand}"/>
         </StackPanel>
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
             <ContentControl Content="{Binding CurrentViewModel, UpdateSourceTrigger=PropertyChanged}">

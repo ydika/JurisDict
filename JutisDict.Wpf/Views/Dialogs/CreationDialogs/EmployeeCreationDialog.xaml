@@ -8,50 +8,65 @@
         d:DataContext="{d:DesignInstance Type=viewmodels:EmployeesViewModel}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="EmployeeCreationDialog" Height="450" Width="800">
-    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <StackPanel>
-            <Label Content="Отдел:" Padding="1"/>
-            <Label Content="Должность:" Padding="1"/>
-            <Label Content="ФИО:" Padding="1"/>
-            <Label Content="Моб. номер:" Padding="1"/>
-            <Label Content="Адрес:" Padding="1"/>
-            <Label Content="День рождения:" Padding="1"/>
-            <Label Content="З/П:" Padding="1"/>
-            <Label Content="Паспортные данные:" Padding="1"/>
-            <Label Content="Опыт:" Padding="1"/>
-            <Label Content="Пол:" Padding="1"/>
-        </StackPanel>
-        <StackPanel Grid.Column="1">
-            <ComboBox ItemsSource="{Binding Departments}"
-                      DisplayMemberPath="DepartmentName"
-                      SelectedValuePath="Id"
-                      SelectedValue="{Binding Path=Employee.DepartmentId}"/>
-            <ComboBox ItemsSource="{Binding Positions}"
-                      DisplayMemberPath="PositionName"
-                      SelectedValuePath="Id"
-                      SelectedValue="{Binding Path=Employee.PositionId}"/>
-            <TextBox Text="{Binding Employee.FullName}"/>
-            <TextBox Text="{Binding Employee.MobileNumber}"/>
-            <TextBox Text="{Binding Employee.Address}"/>
-            <TextBox Text="{Binding Employee.DateOfBirth, StringFormat={}{0:dd.MM.yyyy}}"/>
-            <TextBox Text="{Binding Employee.Salary, StringFormat=0.00}"/>
-            <TextBox Text="{Binding Employee.PassportData}"/>
-            <TextBox Text="{Binding Employee.Experience}"/>
-            <TextBox Text="{Binding Employee.Gender}"/>
-        </StackPanel>
-        <WrapPanel Grid.Row="3">
-            <Button Content="Ok" Command="{Binding OkCommand}"/>
-            <Button Content="Cancel" Command="{Binding CancelCommand}"/>
-        </WrapPanel>
-    </Grid>
+        Title="EmployeeCreationDialog">
+    <Window.Resources>
+        <ResourceDictionary Source="/Styles/DialogWindowStyle.xaml"/>
+    </Window.Resources>
+    <Window.Style>
+        <Style TargetType="Window" BasedOn="{StaticResource dialogWindow}"/>
+    </Window.Style>
+    <StackPanel>
+        <TextBlock Text="Создание Сотрудника"
+                   Style="{StaticResource dialogHeader}"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Style="{StaticResource labelsStackPanel}">
+                <Label Content="Отдел:"/>
+                <Label Content="Должность:"/>
+                <Label Content="ФИО:"/>
+                <Label Content="Моб. номер:"/>
+                <Label Content="Адрес:"
+                       Height="{Binding ElementName=address, Path=ActualHeight}"/>
+                <Label Content="День рождения:"/>
+                <Label Content="З/П:"/>
+                <Label Content="Паспортные данные:"/>
+                <Label Content="Опыт:"/>
+                <Label Content="Пол:"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <ComboBox ItemsSource="{Binding Departments}"
+                          DisplayMemberPath="DepartmentName"
+                          SelectedValuePath="Id"
+                          SelectedValue="{Binding Path=Employee.DepartmentId}"/>
+                <ComboBox ItemsSource="{Binding Positions}"
+                          DisplayMemberPath="PositionName"
+                          SelectedValuePath="Id"
+                          SelectedValue="{Binding Path=Employee.PositionId}"/>
+                <TextBox Text="{Binding Employee.FullName}"/>
+                <TextBox Text="{Binding Employee.MobileNumber}"/>
+                <TextBox x:Name="address" Text="{Binding Employee.Address}"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"/>
+                <DatePicker SelectedDate="{Binding Employee.DateOfBirth, StringFormat={}{0:dd/MM/yyyy}}"/>
+                <TextBox Text="{Binding Employee.Salary, StringFormat=0.00}"/>
+                <TextBox Text="{Binding Employee.PassportData}"/>
+                <TextBox Text="{Binding Employee.Experience}"/>
+                <TextBox Text="{Binding Employee.Gender}"/>
+            </StackPanel>
+            <WrapPanel Grid.ColumnSpan="2" Grid.Row="1"
+                       Style="{StaticResource dialogButtonsPanel}">
+                <Button Style="{StaticResource okButton}"
+                        Command="{Binding OkCommand}"/>
+                <Button Style="{StaticResource cancelButton}"
+                        Command="{Binding CancelCommand}"/>
+            </WrapPanel>
+        </Grid>
+    </StackPanel>
 </Window>

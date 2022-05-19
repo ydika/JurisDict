@@ -10,6 +10,7 @@ namespace JurisDict.Wpf.Icons
     {
         None,
         Client,
+        Close,
         Contract,
         ContractServices,
         Create,

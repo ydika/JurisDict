@@ -66,8 +66,16 @@ namespace JurisDict.Wpf.ViewModels
         {
             try
             {
-                var models = ViewModelsCollection.Where(x => x.IsUpdated is true).Select(x => x.Model);
+                var updatedModels = ViewModelsCollection.Where(x => x.IsUpdated is true);
+                var models = updatedModels.Select(x => x.Model);
                 var responseMessage = await Provider.Update(models);
+                if (responseMessage is not null)
+                {
+                    foreach (var updatedModel in updatedModels)
+                    {
+                        updatedModel.IsUpdated = false;
+                    }
+                }
             }
             catch (HttpException e)
             {
@@ -82,7 +90,7 @@ namespace JurisDict.Wpf.ViewModels
         {
             try
             {
-                var guids = ViewModelsCollection.Where(x => x.IsChecked is true).Select(x => x.Id);
+                var guids = ViewModelsCollection.Where(x => x.IsDelete is true).Select(x => x.Id);
                 var responseMessage = await Provider.Delete(guids);
 
                 var viewModels = ViewModelsCollection.Where(x => responseMessage.Contains(x.Id)).ToList();

@@ -10,13 +10,14 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel>
-            <ext:IconButton Icon="Create" Command="{Binding ServiceCreationShowDialog}"/>
+            <ext:IconButton CornerRadius="15" Icon="Create"
+                            Command="{Binding ServiceCreationShowDialog}"/>
             <DataGrid ItemsSource="{Binding ViewModelsCollection}">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Width="30">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox IsChecked="{Binding IsChecked, UpdateSourceTrigger=PropertyChanged}"/>
+                                <CheckBox IsChecked="{Binding IsDelete, UpdateSourceTrigger=PropertyChanged}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

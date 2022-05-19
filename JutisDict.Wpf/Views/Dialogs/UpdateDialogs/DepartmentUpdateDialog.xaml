@@ -8,28 +8,43 @@
         d:DataContext="{d:DesignInstance Type=viewmodels:DepartmentViewModel}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="DepartmentUpdateDialog" Height="450" Width="800">
-    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <StackPanel>
-            <Label Content="Наименование отдела:" Padding="1"/>
-            <Label Content="Местонахождение:" Padding="1"/>
-        </StackPanel>
-        <StackPanel Grid.Column="1">
-            <TextBox Text="{Binding Model.DepartmentName}"/>
-            <TextBox Text="{Binding Model.Location}"/>
-        </StackPanel>
-        <WrapPanel Grid.Row="3">
-            <Button Content="Ok" Command="{Binding OkCommand}"/>
-            <Button Content="Cancel" Command="{Binding CancelCommand}"/>
-        </WrapPanel>
-    </Grid>
+        Title="DepartmentUpdateDialog">
+    <Window.Resources>
+        <ResourceDictionary Source="/Styles/DialogWindowStyle.xaml"/>
+    </Window.Resources>
+    <Window.Style>
+        <Style TargetType="Window" BasedOn="{StaticResource dialogWindow}"/>
+    </Window.Style>
+    <StackPanel>
+        <TextBlock Text="Редактирование Отдела"
+                   Style="{StaticResource dialogHeader}"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Style="{StaticResource labelsStackPanel}">
+                <Label Content="Наименование отдела:"/>
+                <Label Content="Местонахождение:"
+                       Height="{Binding ElementName=address, Path=ActualHeight}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBox Text="{Binding Model.DepartmentName}"/>
+                <TextBox x:Name="address" Text="{Binding Model.Location}"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"/>
+            </StackPanel>
+            <WrapPanel Grid.ColumnSpan="2" Grid.Row="1"
+                       Style="{StaticResource dialogButtonsPanel}">
+                <Button Style="{StaticResource okButton}"
+                        Command="{Binding OkCommand}"/>
+                <Button Style="{StaticResource cancelButton}"
+                        Command="{Binding CancelCommand}"/>
+            </WrapPanel>
+        </Grid>
+    </StackPanel>
 </Window>

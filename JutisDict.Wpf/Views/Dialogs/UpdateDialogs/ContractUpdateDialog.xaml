@@ -8,36 +8,48 @@
         d:DataContext="{d:DesignInstance Type=viewmodels:ContractViewModel}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="ContractUpdateDialog" Height="450" Width="800">
-    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <StackPanel>
-            <Label Content="ФИО клиента:" Padding="1"/>
-            <Label Content="№ Договора:" Padding="1"/>
-            <Label Content="Дата заключения договора:" Padding="1"/>
-            <Label Content="Статус:" Padding="1"/>
-        </StackPanel>
-        <StackPanel Grid.Column="1">
-            <ComboBox ItemsSource="{Binding Clients}"
-                      DisplayMemberPath="FullName"
-                      SelectedValuePath="Id"
-                      SelectedValue="{Binding Path=Model.ClientId}"
-                      SelectedItem="{Binding Model.Client}"/>
-            <TextBox Text="{Binding Model.ContractNumber}"/>
-            <TextBox Text="{Binding Model.ConclusionDate}"/>
-            <TextBox Text="{Binding Model.Status}"/>
-        </StackPanel>
-        <WrapPanel Grid.Row="3">
-            <Button Content="Ok" Command="{Binding OkCommand}"/>
-            <Button Content="Cancel" Command="{Binding CancelCommand}"/>
-        </WrapPanel>
-    </Grid>
+        Title="ContractUpdateDialog">
+    <Window.Resources>
+        <ResourceDictionary Source="/Styles/DialogWindowStyle.xaml"/>
+    </Window.Resources>
+    <Window.Style>
+        <Style TargetType="Window" BasedOn="{StaticResource dialogWindow}"/>
+    </Window.Style>
+    <StackPanel>
+        <TextBlock Text="Редактирование Контракта"
+                   Style="{StaticResource dialogHeader}"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Style="{StaticResource labelsStackPanel}">
+                <Label Content="ФИО клиента:"/>
+                <Label Content="№ Договора:"/>
+                <Label Content="Дата заключения договора:"/>
+                <Label Content="Статус:"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <ComboBox ItemsSource="{Binding Clients}"
+                          DisplayMemberPath="FullName"
+                          SelectedValuePath="Id"
+                          SelectedValue="{Binding Path=Model.ClientId}"
+                          SelectedItem="{Binding Model.Client}"/>
+                <TextBox Text="{Binding Model.ContractNumber}"/>
+                <DatePicker SelectedDate="{Binding Model.ConclusionDate, StringFormat={}{0:dd/MM/yyyy}}"/>
+                <TextBox Text="{Binding Model.Status}"/>
+            </StackPanel>
+            <WrapPanel Grid.ColumnSpan="2" Grid.Row="1"
+                       Style="{StaticResource dialogButtonsPanel}">
+                <Button Style="{StaticResource okButton}"
+                        Command="{Binding OkCommand}"/>
+                <Button Style="{StaticResource cancelButton}"
+                        Command="{Binding CancelCommand}"/>
+            </WrapPanel>
+        </Grid>
+    </StackPanel>
 </Window>

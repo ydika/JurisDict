@@ -15,7 +15,7 @@ namespace Common.Defaults
             FullName = "---",
             MobileNumber = "---",
             Address = "---",
-            DateOfBirth = DateTime.MinValue,
+            DateOfBirth = DateTime.Now,
             PassportData = "---",
             Gender = "-"
         };
@@ -25,7 +25,7 @@ namespace Common.Defaults
             Id = Guid.NewGuid(),
             Client = new Client(),
             ContractNumber = "---",
-            ConclusionDate = DateTime.MinValue,
+            ConclusionDate = DateTime.Now,
             Status = false
         };
 
@@ -35,8 +35,8 @@ namespace Common.Defaults
             Contract = new Contract(),
             Service = new Service(),
             Employee = new Employee(),
-            AppointmentDate = DateTime.MinValue,
-            PerformanceDate = DateTime.MinValue
+            AppointmentDate = DateTime.Now,
+            PerformanceDate = DateTime.Now
         };
 
         public Department Department { get; set; } = new Department()
@@ -54,7 +54,7 @@ namespace Common.Defaults
             FullName = "---",
             MobileNumber = "---",
             Address = "---",
-            DateOfBirth= DateTime.MinValue,
+            DateOfBirth= DateTime.Now,
             Salary = 0.00,
             PassportData = "---",
             Experience = 0,
