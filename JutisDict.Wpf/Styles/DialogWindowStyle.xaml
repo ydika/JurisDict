@@ -92,15 +92,22 @@
         <Setter Property="Margin" Value="5 5 0 5"/>
     </Style>
 
+    <Style TargetType="CheckBox">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="5 5 0 5"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
     <Style TargetType="ComboBox" BasedOn="{StaticResource dialogControls}">
 
     </Style>
 
-    <Style TargetType="TextBox" BasedOn="{StaticResource dialogControls}">
+
+    <Style TargetType="DatePicker" BasedOn="{StaticResource dialogControls}">
 
     </Style>
 
-    <Style TargetType="DatePicker" BasedOn="{StaticResource dialogControls}">
+    <Style TargetType="TextBox" BasedOn="{StaticResource dialogControls}">
 
     </Style>
 

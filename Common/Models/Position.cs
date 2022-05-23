@@ -2,7 +2,7 @@
 
 namespace Common.Models
 {
-    public class Position : BaseModel
+    public record Position : BaseModel
     {
         public string PositionName { get; set; }
         public string PositionType { get; set; }

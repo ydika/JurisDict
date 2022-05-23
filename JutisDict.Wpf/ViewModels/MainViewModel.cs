@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,20 @@ namespace JurisDict.Wpf.ViewModels
         public bool ControlButtonsVisibility { get; set; }
         public ICommand DeleteViewModelCommand { get; set; }
         public ICommand UpdateViewModelCommand { get; set; }
+
+        private static bool isLoading;
+        public static bool IsLoading
+        {
+            get => isLoading;
+            set
+            {
+                isLoading = value;
+                StaticPropertyChanged?.Invoke(null, FilterStringPropertyEventArgs);
+            }
+        }
+
+        private static readonly PropertyChangedEventArgs FilterStringPropertyEventArgs = new PropertyChangedEventArgs(nameof(IsLoading));
+        public static event PropertyChangedEventHandler StaticPropertyChanged;
 
         public MainViewModel(INavigation navigation, INavigationButtonBuilder navigationButtonBuilder, DeleteCommandProxy deleteCommandProxy, UpdateCommandProxy updateCommandProxy)
         {

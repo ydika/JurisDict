@@ -40,7 +40,7 @@
                           SelectedValue="{Binding Path=Contract.ClientId}"/>
                 <TextBox Text="{Binding Contract.ContractNumber}"/>
                 <DatePicker SelectedDate="{Binding Contract.ConclusionDate, StringFormat={}{0:dd/MM/yyyy}}"/>
-                <TextBox Text="{Binding Contract.Status}"/>
+                <CheckBox IsChecked="{Binding Contract.Status}"/>
             </StackPanel>
             <WrapPanel Grid.ColumnSpan="2" Grid.Row="1"
                        Style="{StaticResource dialogButtonsPanel}">

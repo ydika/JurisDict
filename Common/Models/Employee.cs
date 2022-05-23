@@ -2,7 +2,7 @@
 
 namespace Common.Models
 {
-    public class Employee : BaseModel
+    public record Employee : BaseModel
     {
         public Guid DepartmentId { get; set; }
         public Department Department { get; set; }

@@ -2,7 +2,7 @@
 
 namespace Common.Models
 {
-    public class Department : BaseModel
+    public record Department : BaseModel
     {
         public string DepartmentName { get; set; }
         public string Location { get; set; }

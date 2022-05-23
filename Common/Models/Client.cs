@@ -2,7 +2,7 @@
 
 namespace Common.Models
 {
-    public class Client : BaseModel
+    public record Client : BaseModel
     {
         public string FullName { get; set; }
         public string MobileNumber { get; set; }

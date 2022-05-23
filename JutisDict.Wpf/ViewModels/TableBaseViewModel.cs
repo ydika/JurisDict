@@ -44,6 +44,8 @@ namespace JurisDict.Wpf.ViewModels
 
         public async Task ReadViewModels()
         {
+            MainViewModel.IsLoading = true;
+
             try
             {
                 var responseMessage = await Provider.Read();
@@ -60,6 +62,8 @@ namespace JurisDict.Wpf.ViewModels
                                 $"Url: {e.Url}.\n" +
                                 $"Stack trace: {e.StackTrace}");
             }
+
+            MainViewModel.IsLoading = false;
         }
 
         public async Task UpdateViewModels()

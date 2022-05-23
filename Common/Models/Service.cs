@@ -2,7 +2,7 @@
 
 namespace Common.Models
 {
-    public class Service : BaseModel
+    public record Service : BaseModel
     {
         public string ServiceName { get; set; }
         public string ServiceDescription { get; set; }

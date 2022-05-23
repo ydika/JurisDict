@@ -52,8 +52,10 @@ namespace JurisDict.Api
             services.AddSingleton<Mapper>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationContext applicationContext)
         {
+            applicationContext.Database.Migrate();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

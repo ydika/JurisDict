@@ -2,7 +2,7 @@
 
 namespace Common.Models
 {
-    public class Contract : BaseModel
+    public record Contract : BaseModel
     {
         public Guid ClientId { get; set; }
         public Client Client { get; set; }

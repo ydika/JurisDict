@@ -1,6 +1,6 @@
 ﻿namespace Common.Models.Base
 {
-    public abstract class BaseModel
+    public abstract record BaseModel
     {
         public Guid Id { get; set; }
     }
